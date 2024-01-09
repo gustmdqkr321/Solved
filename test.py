@@ -1,9 +1,17 @@
+def hanoi(a,b,c,n,arr):
+    global count
+    if(n==1):
+        arr.append((a,c))
+        count +=1
+    else:
+        hanoi(a,c,b,n-1,arr)
+        arr.append((a,c))
+        hanoi(b,a,c,n-1,arr)
+        count +=1
 t = int(input())
-arr = [0, 1, 2]  # 초기화
-
-for _ in range(t):
-    n = int(input())
-    for i in range(3, n+1):
-        arr.append(arr[i-1] + arr[i-2] + arr[i-3])  # 점화식
-
-    print(arr[n])  # n번째 항을 출력
+count = 0
+arr= []
+hanoi(1,2,3,t,arr)
+print(count)
+for i,j in arr:
+    print(i,j)
